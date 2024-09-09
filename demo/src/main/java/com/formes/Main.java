@@ -2,14 +2,14 @@ package com.formes;
 
 public class Main {
     public static void main(String[] args) {
-        Carre carre = new Carre(5);          
-        Rectangle rectangle = new Rectangle(8, 4); 
-        Cercle cercle = new Cercle(8);   
-        Triangle triangle = new Triangle (6);      
+        Carre carre = new Carre(9);  
+        Cercle cercle = new Cercle(7); 
+        Triangle triangle = new Triangle(3, 4, 5);
+        Rectangle rectangle = new Rectangle(5, 9); 
 
-        carre.affiche();
-        rectangle.affiche();
-        cercle.affiche();
-        triangle.affiche();
+        System.out.println(carre.toString());
+        System.out.println(cercle.toString());
+        System.out.println(triangle.toString());
+        System.out.println(rectangle.toString());
     }
 }

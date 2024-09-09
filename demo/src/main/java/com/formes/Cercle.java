@@ -7,7 +7,19 @@ public class Cercle {
         this.rayon = rayon;
     }
 
-    public void affiche() {
-        System.out.println("Je suis un cercle : j'ai un rayon de " + rayon + " cm.");
+    // Getter pour récupérer le rayon
+    public int getRayon() {
+        return rayon;
+    }
+
+    // Setter pour modifier le rayon
+    public void setRayon(int rayon) {
+        this.rayon = rayon;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Je suis un cercle : j'ai un rayon de %d cm.",
+                rayon);
     }
 }
