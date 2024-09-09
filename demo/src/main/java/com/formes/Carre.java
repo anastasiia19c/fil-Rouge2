@@ -19,7 +19,6 @@ public class Carre {
 
     @Override
     public String toString() {
-        return String.format("Je suis un carré : j'ai 4 côtés égaux de %d cm.",
-                cote);
+        return "Je suis un carré : j'ai 4 côtés égaux de " + getCote() +" cm.";
     }
 }

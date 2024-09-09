@@ -31,7 +31,6 @@ public class Rectangle {
 
     @Override
     public String toString() {
-        return String.format("Je suis un rectangle : j'ai une longueur de %d cm et une largeur de %d cm.",
-                longueur, largeur);
+        return "Je suis un rectangle : j'ai une longueur de : " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm.";
     }
 }

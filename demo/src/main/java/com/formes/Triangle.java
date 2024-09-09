@@ -38,7 +38,6 @@ public class Triangle {
 
     @Override
     public String toString() {
-        return String.format("Je suis un triangle : j'ai des côtés de %d cm, %d cm, et %d cm.",
-                cote1, cote2, cote3);
+        return "Je suis un triangle : j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm.";
     }
 }

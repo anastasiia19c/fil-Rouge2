@@ -19,7 +19,6 @@ public class Cercle {
 
     @Override
     public String toString() {
-        return String.format("Je suis un cercle : j'ai un rayon de %d cm.",
-                rayon);
+        return "Je suis un cercle : j'ai un rayon de " + getRayon()+ " cm.";
     }
 }
