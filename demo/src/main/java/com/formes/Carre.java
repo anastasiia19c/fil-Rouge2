@@ -1,18 +1,16 @@
 package com.formes;
 
-public class Carre {
+public class Carre extends Formes {
     private int cote;
 
     public Carre(int cote) {
         this.cote = cote;
     }
 
-    // Getter pour récupérer le côté
     public int getCote() {
         return cote;
     }
 
-    // Setter pour modifier le côté
     public void setCote(int cote) {
         this.cote = cote;
     }

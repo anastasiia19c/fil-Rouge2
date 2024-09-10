@@ -2,10 +2,10 @@ package com.formes;
 
 public class Main {
     public static void main(String[] args) {
-        Carre carre = new Carre(10);  
-        Cercle cercle = new Cercle(7); 
-        Triangle triangle = new Triangle(3, 4, 5);
-        Rectangle rectangle = new Rectangle(5, 9); 
+        Formes carre = new Carre(10);  
+        Formes cercle = new Cercle(7); 
+        Formes triangle = new Triangle(3, 4, 5);
+        Formes rectangle = new Rectangle(5, 9); 
 
         System.out.println(carre.toString());
         System.out.println(cercle.toString());

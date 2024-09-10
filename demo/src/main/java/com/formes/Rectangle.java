@@ -1,6 +1,6 @@
 package com.formes;
 
-public class Rectangle {
+public class Rectangle extends Formes{
     private int longueur;
     private int largeur;
 
@@ -31,6 +31,6 @@ public class Rectangle {
 
     @Override
     public String toString() {
-        return "Je suis un rectangle : j'ai une longueur de : " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm.";
+        return "Je suis un rectangle : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm.";
     }
 }

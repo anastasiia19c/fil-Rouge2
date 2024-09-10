@@ -1,18 +1,16 @@
 package com.formes;
 
-public class Cercle {
+public class Cercle extends Formes {
     private int rayon;
 
     public Cercle(int rayon) {
         this.rayon = rayon;
     }
 
-    // Getter pour récupérer le rayon
     public int getRayon() {
         return rayon;
     }
 
-    // Setter pour modifier le rayon
     public void setRayon(int rayon) {
         this.rayon = rayon;
     }

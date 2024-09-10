@@ -1,6 +1,6 @@
 package com.formes;
 
-public class Triangle {
+public class Triangle extends Formes {
     private int cote1;
     private int cote2;
     private int cote3;
@@ -11,7 +11,6 @@ public class Triangle {
         this.cote3 = cote3;
     }
 
-    // Getters et setters pour chaque côté
     public int getCote1() {
         return cote1;
     }
