@@ -16,17 +16,17 @@ public class Cercle extends Formes {
     }
 
     @Override
-    public double calculerAire() {
+    public double getAire() {
         return Math.PI * rayon * rayon;
     }
     
     @Override
-    public double calculerPerimetre() {
+    public double getPerimetre() {
         return 2 * Math.PI * rayon;
     }
 
     @Override
     public String toString() {
-        return "Je suis un cercle : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ calculerAire() + "cm2 et mon périmètre est de "+ calculerPerimetre()+" cm.";
+        return "Je suis un cercle : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ getAire() + "cm2 et mon périmètre est de "+ getPerimetre()+" cm.";
     }
 }

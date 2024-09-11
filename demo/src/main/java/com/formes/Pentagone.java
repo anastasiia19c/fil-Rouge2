@@ -18,17 +18,17 @@ public class Pentagone extends Formes{
     }
 
     @Override
-    public double calculerAire() {
+    public double getAire() {
         return (1.0 / 4.0) * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * cote * cote;
     }
 
     @Override
-    public double calculerPerimetre() {
+    public double getPerimetre() {
         return 5 * cote;
     }
 
     @Override
     public String toString() {
-        return "Je suis un pentagone convexe : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + calculerAire() + " cm2 et mon périmètre est de " + calculerPerimetre() + " cm.";
+        return "Je suis un pentagone convexe : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

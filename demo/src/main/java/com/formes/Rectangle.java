@@ -36,17 +36,17 @@ public class Rectangle extends Formes{
     }
 
     @Override
-    public double calculerAire() {
+    public double getAire() {
         return largeur * longueur;
     }
     
     @Override
-    public double calculerPerimetre() {
+    public double getPerimetre() {
         return (largeur + longueur) * 2;
     }
 
     @Override
     public String toString() {
-        return isRectangle() + " : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + calculerAire() + " cm2 et mon périmètre est de " + calculerPerimetre() + " cm.";
+        return isRectangle() + " : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

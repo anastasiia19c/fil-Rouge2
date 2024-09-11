@@ -18,17 +18,17 @@ public class Hexagone extends Formes {
     }
 
     @Override
-    public double calculerAire() {
+    public double getAire() {
         return (3.0 * Math.sqrt(3) / 2.0) * cote * cote;
     }
 
     @Override
-    public double calculerPerimetre() {
+    public double getPerimetre() {
         return 6 * cote;
     }
 
     @Override
     public String toString() {
-        return "Je suis un hexagone convexe : j'ai 6 côté de " +  getCote() + " cm et mon aire est de " + calculerAire() + " cm2 et mon périmètre est de " + calculerPerimetre() + " cm.";
+        return "Je suis un hexagone convexe : j'ai 6 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

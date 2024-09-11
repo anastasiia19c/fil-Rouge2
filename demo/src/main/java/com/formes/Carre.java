@@ -16,17 +16,17 @@ public class Carre extends Formes {
     }
 
     @Override
-    public double calculerAire() {
+    public double getAire() {
         return cote * cote;
     }
 
     @Override
-    public double calculerPerimetre() {
+    public double getPerimetre() {
         return 4 * cote;
     }
 
     @Override
     public String toString() {
-        return "Je suis un carré : j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + calculerAire() + " cm² et mon périmètre est de " + calculerPerimetre() + " cm.";
+        return "Je suis un carré : j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + getAire() + " cm² et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }
