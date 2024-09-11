@@ -1,36 +1,52 @@
 package com.formes;
 
 public class Rectangle extends Formes{
-    private int longueur;
-    private int largeur;
+    private double longueur;
+    private double largeur;
 
-    public Rectangle(int longueur, int largeur) {
+    public Rectangle(double longueur, double largeur) {
         this.longueur = longueur;
         this.largeur = largeur;
     }
 
-    // Getter pour récupérer la longueur
-    public int getLongueur() {
+    public String isRectangle() {
+        if (longueur > largeur) {
+            return "Je suis un rectangle ";
+        } else if (longueur < largeur) {
+            return "Je suis un rectangle ";
+        } else {
+            return "Je ne suis pas un rectangle ";
+        }
+    }
+
+    public double getLongueur() {
         return longueur;
     }
 
-    // Setter pour modifier la longueur
-    public void setLongueur(int longueur) {
+    public void setLongueur(double longueur) {
         this.longueur = longueur;
     }
 
-    // Getter pour récupérer la largeur
-    public int getLargeur() {
+    public double getLargeur() {
         return largeur;
     }
 
-    // Setter pour modifier la largeur
-    public void setLargeur(int largeur) {
+    public void setLargeur(double largeur) {
         this.largeur = largeur;
     }
 
     @Override
+    public double calculerAire() {
+        return largeur * longueur;
+    }
+    
+    @Override
+    public double calculerPerimetre() {
+        return (largeur + longueur) * 2;
+    }
+
+    @Override
     public String toString() {
-        return "Je suis un rectangle : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm.";
+        return isRectangle() + " : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + calculerAire() + " cm2 et mon périmètre est de " + calculerPerimetre() + " cm.";
     }
 }

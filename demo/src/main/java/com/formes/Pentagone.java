@@ -1,9 +1,11 @@
 package com.formes;
 
-public class Carre extends Formes {
+public class Pentagone extends Formes{
+
     private double cote;
 
-    public Carre(double cote) {
+
+    public Pentagone(double cote) {
         this.cote = cote;
     }
 
@@ -17,16 +19,16 @@ public class Carre extends Formes {
 
     @Override
     public double calculerAire() {
-        return cote * cote;
+        return (1.0 / 4.0) * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * cote * cote;
     }
 
     @Override
     public double calculerPerimetre() {
-        return 4 * cote;
+        return 5 * cote;
     }
 
     @Override
     public String toString() {
-        return "Je suis un carré : j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + calculerAire() + " cm² et mon périmètre est de " + calculerPerimetre() + " cm.";
+        return "Je suis un pentagone convexe : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + calculerAire() + " cm2 et mon périmètre est de " + calculerPerimetre() + " cm.";
     }
 }
