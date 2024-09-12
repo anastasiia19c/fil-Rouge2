@@ -7,7 +7,8 @@ public class Triangle extends Formes {
     private double base;
     private double hauteur;
 
-    public Triangle(double cote1, double cote2, double cote3, double base, double hauteur) {
+    public Triangle(double cote1, double cote2, double cote3, double base, double hauteur, String couleur) {
+        super(couleur);
         this.cote1 = cote1;
         this.cote2 = cote2;
         this.cote3 = cote3;
@@ -17,9 +18,9 @@ public class Triangle extends Formes {
 
     public String isTriangle() {
         if (cote1 + cote2 > cote3 && cote1 + cote3 > cote2 && cote2 + cote3 > cote1){
-            return "Je suis un triangle : ";
+            return "Je suis un triangle ";
         } else{
-            return "Je ne suis pas un triagle : ";
+            return "Je ne suis pas un triagle ";
         }
     }
 
@@ -59,6 +60,6 @@ public class Triangle extends Formes {
 
     @Override
     public String toString() {
-        return isTriangle() + " j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de "+ getPerimetre() + " cm.";
+        return isTriangle()+ "de couleur "+ getCouleur()+ " : j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de "+ getPerimetre() + " cm.";
     }
 }

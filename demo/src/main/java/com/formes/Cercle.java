@@ -3,7 +3,8 @@ package com.formes;
 public class Cercle extends Formes {
     private double rayon;
 
-    public Cercle(double rayon) {
+    public Cercle(double rayon, String couleur) {
+        super(couleur);
         this.rayon = rayon;
     }
 
@@ -27,6 +28,6 @@ public class Cercle extends Formes {
 
     @Override
     public String toString() {
-        return "Je suis un cercle : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ getAire() + "cm2 et mon périmètre est de "+ getPerimetre()+" cm.";
+        return "Je suis un cercle de couleur "+ getCouleur()+" : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ getAire() + "cm2 et mon périmètre est de "+ getPerimetre()+" cm.";
     }
 }

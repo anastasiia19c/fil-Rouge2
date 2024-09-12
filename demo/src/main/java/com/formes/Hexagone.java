@@ -5,7 +5,8 @@ public class Hexagone extends Formes {
     private double cote;
 
 
-    public Hexagone(double cote) {
+    public Hexagone(double cote, String couleur) {
+        super(couleur);
         this.cote = cote;
     }
 
@@ -29,6 +30,6 @@ public class Hexagone extends Formes {
 
     @Override
     public String toString() {
-        return "Je suis un hexagone convexe : j'ai 6 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
+        return "Je suis un hexagone convexe de couleur "+ getCouleur()+" : j'ai 6 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

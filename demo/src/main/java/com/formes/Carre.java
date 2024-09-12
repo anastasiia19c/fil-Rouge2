@@ -3,7 +3,8 @@ package com.formes;
 public class Carre extends Formes {
     private double cote;
 
-    public Carre(double cote) {
+    public Carre(double cote, String couleur) {
+        super (couleur);
         this.cote = cote;
     }
 
@@ -27,6 +28,6 @@ public class Carre extends Formes {
 
     @Override
     public String toString() {
-        return "Je suis un carré : j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + getAire() + " cm² et mon périmètre est de " + getPerimetre() + " cm.";
+        return "Je suis un carré de couleur "+ getCouleur()+": j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + getAire() + " cm² et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

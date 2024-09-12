@@ -5,7 +5,8 @@ public class Pentagone extends Formes{
     private double cote;
 
 
-    public Pentagone(double cote) {
+    public Pentagone(double cote, String couleur) {
+        super(couleur);
         this.cote = cote;
     }
 
@@ -29,6 +30,6 @@ public class Pentagone extends Formes{
 
     @Override
     public String toString() {
-        return "Je suis un pentagone convexe : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
+        return "Je suis un pentagone convexe de couleur "+ getCouleur()+" : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

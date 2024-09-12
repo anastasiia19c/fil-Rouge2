@@ -4,7 +4,8 @@ public class Rectangle extends Formes{
     private double longueur;
     private double largeur;
 
-    public Rectangle(double longueur, double largeur) {
+    public Rectangle(double longueur, double largeur, String couleur) {
+        super(couleur);
         this.longueur = longueur;
         this.largeur = largeur;
     }
@@ -47,6 +48,6 @@ public class Rectangle extends Formes{
 
     @Override
     public String toString() {
-        return isRectangle() + " : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
+        return isRectangle() + "de couleur "+ getCouleur()+" : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }
