@@ -5,8 +5,8 @@ public class Hexagone extends Formes {
     private double cote;
 
 
-    public Hexagone(double cote, String couleur) {
-        super(couleur);
+    public Hexagone(double cote, String couleur, double x, double y) {
+        super(couleur, x, y);
         this.cote = cote;
     }
 
@@ -16,6 +16,12 @@ public class Hexagone extends Formes {
 
     public void setCote(double cote) {
         this.cote = cote;
+    }
+
+
+    @Override
+    public double getTaille() {
+        return getAire();
     }
 
     @Override

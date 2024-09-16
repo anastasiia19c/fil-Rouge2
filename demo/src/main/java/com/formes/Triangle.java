@@ -7,8 +7,8 @@ public class Triangle extends Formes {
     private double base;
     private double hauteur;
 
-    public Triangle(double cote1, double cote2, double cote3, double base, double hauteur, String couleur) {
-        super(couleur);
+    public Triangle(double cote1, double cote2, double cote3, double base, double hauteur, String couleur, double x, double y) {
+        super(couleur, x, y);
         this.cote1 = cote1;
         this.cote2 = cote2;
         this.cote3 = cote3;
@@ -46,6 +46,11 @@ public class Triangle extends Formes {
 
     public void setCote3(double cote3) {
         this.cote3 = cote3;
+    }
+
+    @Override
+    public double getTaille() {
+        return getAire();
     }
 
     @Override

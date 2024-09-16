@@ -4,8 +4,8 @@ public class Rectangle extends Formes{
     private double longueur;
     private double largeur;
 
-    public Rectangle(double longueur, double largeur, String couleur) {
-        super(couleur);
+    public Rectangle(double longueur, double largeur, String couleur,double x, double y) {
+        super(couleur,x, y);
         this.longueur = longueur;
         this.largeur = largeur;
     }
@@ -34,6 +34,11 @@ public class Rectangle extends Formes{
 
     public void setLargeur(double largeur) {
         this.largeur = largeur;
+    }
+
+    @Override
+    public double getTaille() {
+        return getAire();
     }
 
     @Override

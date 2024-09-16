@@ -5,8 +5,8 @@ public class Pentagone extends Formes{
     private double cote;
 
 
-    public Pentagone(double cote, String couleur) {
-        super(couleur);
+    public Pentagone(double cote, String couleur, double x, double y) {
+        super(couleur, y, x);
         this.cote = cote;
     }
 
@@ -16,6 +16,12 @@ public class Pentagone extends Formes{
 
     public void setCote(double cote) {
         this.cote = cote;
+    }
+
+
+    @Override
+    public double getTaille() {
+        return getAire();
     }
 
     @Override

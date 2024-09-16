@@ -3,8 +3,8 @@ package com.formes;
 public class Cercle extends Formes {
     private double rayon;
 
-    public Cercle(double rayon, String couleur) {
-        super(couleur);
+    public Cercle(double rayon, String couleur, double x, double y) {
+        super(couleur, x, y);
         this.rayon = rayon;
     }
 
@@ -14,6 +14,11 @@ public class Cercle extends Formes {
 
     public void setRayon(double rayon) {
         this.rayon = rayon;
+    }
+
+    @Override
+    public double getTaille() {
+        return getAire();
     }
 
     @Override

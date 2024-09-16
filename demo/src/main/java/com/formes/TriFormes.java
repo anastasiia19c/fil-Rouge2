@@ -32,6 +32,13 @@ public class TriFormes {
 
     @Override
     public String toString() {
-        return "La collection contient " + formes.size() + " formes avec une aire totale de " + aireTotale() + " cm² et un périmètre total de " + perimetreTotal() + " cm.";
+        String result = "La collection contient " + formes.size() + " formes:\n";
+        for (Formes forme : formes) {
+            result += forme.toString() + "\n";
+        }
+        result += "Aire totale: " + aireTotale() + " cm²\n";
+        result += "Périmètre total: " + perimetreTotal() + " cm\n";
+        return result;
     }
+
 }

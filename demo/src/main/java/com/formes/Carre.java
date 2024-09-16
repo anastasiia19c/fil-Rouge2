@@ -3,8 +3,8 @@ package com.formes;
 public class Carre extends Formes {
     private double cote;
 
-    public Carre(double cote, String couleur) {
-        super (couleur);
+    public Carre(double cote, String couleur, double x, double y) {
+        super (couleur, x,y);
         this.cote = cote;
     }
 
@@ -14,6 +14,11 @@ public class Carre extends Formes {
 
     public void setCote(double cote) {
         this.cote = cote;
+    }
+
+    @Override
+    public double getTaille() {
+        return getAire();
     }
 
     @Override
