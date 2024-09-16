@@ -1,6 +1,6 @@
 package com.formes;
 
-public class Pentagone extends Formes{
+public class Pentagone extends Forme{
 
     private double cote;
 
@@ -16,12 +16,6 @@ public class Pentagone extends Formes{
 
     public void setCote(double cote) {
         this.cote = cote;
-    }
-
-
-    @Override
-    public double getTaille() {
-        return getAire();
     }
 
     @Override

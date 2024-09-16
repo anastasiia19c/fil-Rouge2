@@ -1,12 +1,12 @@
 package com.formes;
 
-public abstract class Formes {
+public abstract class Forme {
 
     private String couleur; 
     private double x; 
     private double y; 
 
-    public Formes(String couleur, double x, double y) {
+    public Forme(String couleur, double x, double y) {
         this.couleur = couleur;
         this.x = x;
         this.y = y;
@@ -38,8 +38,10 @@ public abstract class Formes {
 
     @Override
     public abstract String toString();
-    
-    public abstract double getTaille(); 
+
+    public double getTaille(){
+        return getAire();
+    }; 
 
     public abstract double getAire();
 

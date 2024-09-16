@@ -1,6 +1,6 @@
 package com.formes;
 
-public class Carre extends Formes {
+public class Carre extends Forme {
     private double cote;
 
     public Carre(double cote, String couleur, double x, double y) {
@@ -14,11 +14,6 @@ public class Carre extends Formes {
 
     public void setCote(double cote) {
         this.cote = cote;
-    }
-
-    @Override
-    public double getTaille() {
-        return getAire();
     }
 
     @Override

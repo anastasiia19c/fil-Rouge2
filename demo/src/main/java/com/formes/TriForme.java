@@ -3,20 +3,20 @@ package com.formes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TriFormes {
-    private List<Formes> formes; 
+public class TriForme {
+    private List<Forme> formes; 
 
-    public TriFormes() {
+    public TriForme() {
         this.formes = new ArrayList<>(); 
     }
 
-    public void ajouterForme(Formes forme) {
+    public void ajouterForme(Forme forme) {
         this.formes.add(forme);
     }
 
     public double aireTotale() {
         double aireTotale = 0;
-        for (Formes forme : formes) {
+        for (Forme forme : formes) {
             aireTotale += forme.getAire();
         }
         return aireTotale;
@@ -24,7 +24,7 @@ public class TriFormes {
 
     public double perimetreTotal() {
         double perimetreTotal = 0;
-        for (Formes forme : formes) {
+        for (Forme forme : formes) {
             perimetreTotal += forme.getPerimetre();
         }
         return perimetreTotal;
@@ -33,7 +33,7 @@ public class TriFormes {
     @Override
     public String toString() {
         String result = "La collection contient " + formes.size() + " formes:\n";
-        for (Formes forme : formes) {
+        for (Forme forme : formes) {
             result += forme.toString() + "\n";
         }
         result += "Aire totale: " + aireTotale() + " cm²\n";

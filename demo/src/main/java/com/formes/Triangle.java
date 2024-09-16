@@ -1,6 +1,6 @@
 package com.formes;
 
-public class Triangle extends Formes {
+public class Triangle extends Forme {
     private double cote1;
     private double cote2;
     private double cote3;
@@ -46,11 +46,6 @@ public class Triangle extends Formes {
 
     public void setCote3(double cote3) {
         this.cote3 = cote3;
-    }
-
-    @Override
-    public double getTaille() {
-        return getAire();
     }
 
     @Override

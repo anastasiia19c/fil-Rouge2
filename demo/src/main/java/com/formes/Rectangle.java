@@ -1,6 +1,6 @@
 package com.formes;
 
-public class Rectangle extends Formes{
+public class Rectangle extends Forme{
     private double longueur;
     private double largeur;
 
@@ -34,11 +34,6 @@ public class Rectangle extends Formes{
 
     public void setLargeur(double largeur) {
         this.largeur = largeur;
-    }
-
-    @Override
-    public double getTaille() {
-        return getAire();
     }
 
     @Override
