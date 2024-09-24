@@ -28,6 +28,6 @@ public class Cercle extends Forme {
 
     @Override
     public String toString() {
-        return "Je suis un cercle de couleur "+ getCouleur()+" : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ getAire() + "cm2 et mon périmètre est de "+ getPerimetre()+" cm.";
+        return getType()+ " "+ getCouleur()+" : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ getAire() + "cm2 et mon périmètre est de "+ getPerimetre()+" cm.";
     }
 }

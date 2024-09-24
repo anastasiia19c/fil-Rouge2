@@ -31,6 +31,6 @@ public class Pentagone extends Forme{
 
     @Override
     public String toString() {
-        return "Je suis un pentagone convexe de couleur "+ getCouleur()+" : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
+        return getType()+ " convexe "+ getCouleur()+" : j'ai 5 côté de " +  getCote() + " cm et mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

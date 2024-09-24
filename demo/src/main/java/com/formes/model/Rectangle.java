@@ -11,16 +11,6 @@ public class Rectangle extends Forme{
         this.largeur = largeur;
     }
 
-    public String isRectangle() {
-        if (longueur > largeur) {
-            return "Je suis un rectangle ";
-        } else if (longueur < largeur) {
-            return "Je suis un rectangle ";
-        } else {
-            return "Je ne suis pas un rectangle ";
-        }
-    }
-
     public double getLongueur() {
         return longueur;
     }
@@ -49,6 +39,6 @@ public class Rectangle extends Forme{
 
     @Override
     public String toString() {
-        return isRectangle() + "de couleur "+ getCouleur()+" : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
+        return getType() + " "+ getCouleur()+" : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
     }
 }

@@ -11,6 +11,9 @@ public abstract class Forme {
         this.x = x;
         this.y = y;
     }
+    public String getType() {
+        return getClass().getSimpleName();
+    }
 
     public String getCouleur() {
         return couleur;

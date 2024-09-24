@@ -16,14 +16,6 @@ public class Triangle extends Forme {
         this.hauteur = hauteur;
     }
 
-    public String isTriangle() {
-        if (cote1 + cote2 > cote3 && cote1 + cote3 > cote2 && cote2 + cote3 > cote1){
-            return "Je suis un triangle ";
-        } else{
-            return "Je ne suis pas un triagle ";
-        }
-    }
-
     public double getCote1() {
         return cote1;
     }
@@ -60,6 +52,6 @@ public class Triangle extends Forme {
 
     @Override
     public String toString() {
-        return isTriangle()+ "de couleur "+ getCouleur()+ " : j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de "+ getPerimetre() + " cm.";
+        return getType()+ " "+ getCouleur()+ " : j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de "+ getPerimetre() + " cm.";
     }
 }

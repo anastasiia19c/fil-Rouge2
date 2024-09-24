@@ -1,5 +1,6 @@
 /opt/lampp/htdocs/filRouge2/tatkova-anastasiia-4.0.2/demo/src/main/java/com/formes/BackApplication.java
 /opt/lampp/htdocs/filRouge2/tatkova-anastasiia-4.0.2/demo/src/main/java/com/formes/controller/FormeController.java
+/opt/lampp/htdocs/filRouge2/tatkova-anastasiia-4.0.2/demo/src/main/java/com/formes/controller/TriFormeController.java
 /opt/lampp/htdocs/filRouge2/tatkova-anastasiia-4.0.2/demo/src/main/java/com/formes/model/Carre.java
 /opt/lampp/htdocs/filRouge2/tatkova-anastasiia-4.0.2/demo/src/main/java/com/formes/model/Cercle.java
 /opt/lampp/htdocs/filRouge2/tatkova-anastasiia-4.0.2/demo/src/main/java/com/formes/model/Forme.java
