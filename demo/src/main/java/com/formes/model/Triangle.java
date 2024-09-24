@@ -1,7 +1,5 @@
 package com.formes.model;
 
-import com.formes.Forme;
-
 public class Triangle extends Forme {
     private double cote1;
     private double cote2;

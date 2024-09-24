@@ -1,6 +1,5 @@
 package com.formes.model;
 
-import com.formes.Forme;
 
 public class Rectangle extends Forme{
     private double longueur;

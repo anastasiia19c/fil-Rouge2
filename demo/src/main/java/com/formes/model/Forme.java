@@ -1,7 +1,7 @@
-package com.formes;
+package com.formes.model;
+
 
 public abstract class Forme {
-
     private String couleur; 
     private double x; 
     private double y; 

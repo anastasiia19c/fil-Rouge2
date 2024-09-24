@@ -5,9 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.formes.model.Carre;
 import com.formes.model.Cercle;
+import com.formes.model.Forme;
 import com.formes.model.Hexagone;
 import com.formes.model.Pentagone;
 import com.formes.model.Rectangle;
+import com.formes.model.TriForme;
 import com.formes.model.Triangle;
 
 @SpringBootApplication

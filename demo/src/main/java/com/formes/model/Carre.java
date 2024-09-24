@@ -1,7 +1,5 @@
 package com.formes.model;
 
-import com.formes.Forme;
-
 
 public class Carre extends Forme {
     private double cote;

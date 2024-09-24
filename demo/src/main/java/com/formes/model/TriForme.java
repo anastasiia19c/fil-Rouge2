@@ -1,14 +1,15 @@
-package com.formes;
+package com.formes.model;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TriForme {
-    private List<Forme> formes; 
 
-    public TriForme() {
-        this.formes = new ArrayList<>(); 
-    }
+public class TriForme {
+
+    private List<Forme> formes = new ArrayList<>();
+
+    public TriForme() {}
 
     public void ajouterForme(Forme forme) {
         this.formes.add(forme);

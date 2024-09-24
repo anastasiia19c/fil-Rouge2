@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import com.formes.model.Carre;
 import com.formes.model.Cercle;
+import com.formes.model.Forme;
+import com.formes.model.TriForme;
 
 public class TriFormeTest {
     private TriForme collection;

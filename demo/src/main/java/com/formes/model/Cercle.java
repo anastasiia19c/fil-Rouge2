@@ -1,7 +1,5 @@
 package com.formes.model;
 
-import com.formes.Forme;
-
 public class Cercle extends Forme {
     private double rayon;
 
