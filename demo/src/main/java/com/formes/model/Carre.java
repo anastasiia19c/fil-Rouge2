@@ -1,9 +1,17 @@
 package com.formes.model;
 
+import jakarta.persistence.*;
 
+@Entity
+@DiscriminatorValue("carre")
+@Table(name = "carre")
 public class Carre extends Forme {
     private double cote;
 
+    public Carre() {
+        super(" ", 0.0, 0.0); 
+        this.cote = 0.0; 
+    }
     public Carre(double cote, String couleur, double x, double y) {
         super (couleur, x,y);
         this.cote = cote;

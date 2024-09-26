@@ -1,10 +1,20 @@
 package com.formes.model;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@DiscriminatorValue("pentagone")
+@Table(name = "pentagone")
 public class Pentagone extends Forme{
 
     private double cote;
 
+    public Pentagone() {
+        super("", 0.0, 0.0); 
+        this.cote = 0.0; 
+    }
 
     public Pentagone(double cote, String couleur, double x, double y) {
         super(couleur, y, x);

@@ -1,8 +1,15 @@
 package com.formes.model;
+import jakarta.persistence.*;
 
+@Entity
+@DiscriminatorValue("cercle")
+@Table(name = "cercle")
 public class Cercle extends Forme {
     private double rayon;
-
+    public Cercle() {
+        super(" ", 0.0, 0.0); 
+        this.rayon = 0.0; 
+    }
     public Cercle(double rayon, String couleur, double x, double y) {
         super(couleur, x, y);
         this.rayon = rayon;

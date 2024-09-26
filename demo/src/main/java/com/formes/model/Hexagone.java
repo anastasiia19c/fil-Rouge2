@@ -1,9 +1,18 @@
 package com.formes.model;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.*;
 
+@Entity
+@DiscriminatorValue("hexagone")
+@Table(name = "hexagone")
 public class Hexagone extends Forme {
 
     private double cote;
 
+    public Hexagone() {
+        super("", 0.0, 0.0); 
+        this.cote = 0.0; 
+    }
 
     public Hexagone(double cote, String couleur, double x, double y) {
         super(couleur, x, y);

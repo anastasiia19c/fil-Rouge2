@@ -1,11 +1,22 @@
 package com.formes.model;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.*;
 
+@Entity
+@DiscriminatorValue("triangle")
+@Table(name = "triangle")
 public class Triangle extends Forme {
     private double cote1;
     private double cote2;
     private double cote3;
     private double base;
     private double hauteur;
+
+    public Triangle() {
+        super(" ", 0.0, 0.0); 
+        this.base = 0.0;
+        this.hauteur = 0.0;
+    }
 
     public Triangle(double cote1, double cote2, double cote3, double base, double hauteur, String couleur, double x, double y) {
         super(couleur, x, y);

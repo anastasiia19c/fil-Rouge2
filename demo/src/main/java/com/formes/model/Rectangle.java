@@ -1,9 +1,21 @@
 package com.formes.model;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@DiscriminatorValue("rectangle")
+@Table(name = "rectangle")
 public class Rectangle extends Forme{
     private double longueur;
     private double largeur;
+
+    public Rectangle() {
+        super("", 0.0, 0.0); 
+        this.longueur = 0.0; 
+        this.largeur = 0.0;
+    }
 
     public Rectangle(double longueur, double largeur, String couleur,double x, double y) {
         super(couleur,x, y);

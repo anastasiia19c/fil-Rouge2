@@ -1,7 +1,32 @@
 package com.formes.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.*;
 
 
+@JsonTypeInfo(  
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Carre.class, name = "Carre"),
+        @JsonSubTypes.Type(value = Cercle.class, name = "Cercle"),
+        @JsonSubTypes.Type(value = Rectangle.class, name = "Rectangle"),
+        @JsonSubTypes.Type(value = Triangle.class, name = "Triangle"),
+        @JsonSubTypes.Type(value = Hexagone.class, name = "Hexagone"),
+        @JsonSubTypes.Type(value = Pentagone.class, name = "Pentagone")
+})
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "forme")
 public abstract class Forme {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String couleur; 
     private double x; 
     private double y; 
@@ -11,6 +36,7 @@ public abstract class Forme {
         this.x = x;
         this.y = y;
     }
+    @JsonIgnore
     public String getType() {
         return getClass().getSimpleName();
     }

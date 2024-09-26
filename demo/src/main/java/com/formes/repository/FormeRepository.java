@@ -1,4 +1,7 @@
-package  com.formes.repository;
+package com.formes.repository;
 
-public interface FormeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.formes.model.Forme;
+
+public interface FormeRepository extends JpaRepository<Forme, Long> {
 }
