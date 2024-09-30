@@ -3,8 +3,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.formes.repository.FormeRepository;
+
 import com.formes.model.Forme;
+import com.formes.repository.FormeRepository;
 
 
 
@@ -32,5 +33,4 @@ public class FormeService {
             return false;
         }
     }
-    
 }

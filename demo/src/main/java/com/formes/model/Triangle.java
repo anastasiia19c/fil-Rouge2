@@ -1,6 +1,7 @@
 package com.formes.model;
 import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @DiscriminatorValue("triangle")
@@ -24,6 +25,22 @@ public class Triangle extends Forme {
         this.cote2 = cote2;
         this.cote3 = cote3;
         this.base = base;
+        this.hauteur = hauteur;
+    }
+
+    public double getBase() {
+        return base;
+    }
+
+    public void setBase(double base) {
+        this.base = base;
+    }
+
+    public double getHauteur() {
+        return hauteur;
+    }
+
+    public void setHauteur(double hauteur) {
         this.hauteur = hauteur;
     }
 
