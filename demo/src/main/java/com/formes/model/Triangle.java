@@ -69,17 +69,17 @@ public class Triangle extends Forme {
     }
 
     @Override
-    public double getAire() {
+    public double calculerAire() {
         return (base * hauteur) / 2 ;
     }
 
     @Override
-    public double getPerimetre() {
+    public double calculerPerimetre() {
         return cote1 + cote2 + cote3;
     }
 
     @Override
     public String toString() {
-        return getType()+ " "+ getCouleur()+ " : j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de "+ getPerimetre() + " cm.";
+        return getType()+ " "+ getCouleur()+ " : j'ai des côtés de " + getCote1() + " cm, " + getCote2() +" cm, et " + getCote3() + " cm, mon aire est de " + calculerAire() + " cm2 et mon périmètre est de "+ calculerPerimetre() + " cm.";
     }
 }

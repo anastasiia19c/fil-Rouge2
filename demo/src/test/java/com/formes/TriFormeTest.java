@@ -24,7 +24,7 @@ public class TriFormeTest {
         collection.ajouterForme(carre);
         collection.ajouterForme(cercle);
 
-        double aireAttendue = carre.getAire() + cercle.getAire();
+        double aireAttendue = carre.calculerAire() + cercle.calculerAire();
         assertEquals(aireAttendue, collection.aireTotale());
     }
 
@@ -36,7 +36,7 @@ public class TriFormeTest {
         collection.ajouterForme(carre);
         collection.ajouterForme(cercle);
 
-        double perimetreAttendu = carre.getPerimetre() + cercle.getPerimetre();
+        double perimetreAttendu = carre.calculerPerimetre() + cercle.calculerPerimetre();
         assertEquals(perimetreAttendu, collection.perimetreTotal());
     }
 }

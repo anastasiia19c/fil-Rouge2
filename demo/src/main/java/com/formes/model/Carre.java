@@ -1,6 +1,8 @@
 package com.formes.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @DiscriminatorValue("carre")
@@ -26,17 +28,17 @@ public class Carre extends Forme {
     }
 
     @Override
-    public double getAire() {
+    public double calculerAire() {
         return cote * cote;
     }
 
     @Override
-    public double getPerimetre() {
+    public double calculerPerimetre() {
         return 4 * cote;
     }
 
     @Override
     public String toString() {
-        return getType()+" "+ getCouleur()+": j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + getAire() + " cm² et mon périmètre est de " + getPerimetre() + " cm.";
+        return getType()+" "+ getCouleur()+": j'ai 4 côtés égaux de " + getCote() +" cm, mon aire est de " + calculerAire() + " cm² et mon périmètre est de " + calculerPerimetre() + " cm.";
     }
 }

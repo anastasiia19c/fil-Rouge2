@@ -59,7 +59,7 @@ public class TriForme {
     public double aireTotale() {
         double aireTotale = 0;
         for (Forme forme : formes) {
-            aireTotale += forme.getAire();
+            aireTotale += forme.calculerAire();
         }
         return aireTotale;
     }
@@ -67,7 +67,7 @@ public class TriForme {
     public double perimetreTotal() {
         double perimetreTotal = 0;
         for (Forme forme : formes) {
-            perimetreTotal += forme.getPerimetre();
+            perimetreTotal += forme.calculerPerimetre();
         }
         return perimetreTotal;
     }

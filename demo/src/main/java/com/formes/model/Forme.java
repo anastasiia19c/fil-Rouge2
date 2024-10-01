@@ -84,10 +84,10 @@ public abstract class Forme {
     public abstract String toString();
 
     public double getTaille(){
-        return getAire();
+        return calculerAire();
     }; 
 
-    public abstract double getAire();
+    public abstract double calculerAire();
 
-    public abstract double getPerimetre();
+    public abstract double calculerPerimetre();
 }

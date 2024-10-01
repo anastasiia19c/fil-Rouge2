@@ -40,17 +40,17 @@ public class Rectangle extends Forme{
     }
 
     @Override
-    public double getAire() {
+    public double calculerAire() {
         return largeur * longueur;
     }
     
     @Override
-    public double getPerimetre() {
+    public double calculerPerimetre() {
         return (largeur + longueur) * 2;
     }
 
     @Override
     public String toString() {
-        return getType() + " "+ getCouleur()+" : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + getAire() + " cm2 et mon périmètre est de " + getPerimetre() + " cm.";
+        return getType() + " "+ getCouleur()+" : j'ai une longueur de " +  getLongueur() + " cm et une largeur de " + getLargeur() + " cm, mon aire est de " + calculerAire() + " cm2 et mon périmètre est de " + calculerPerimetre() + " cm.";
     }
 }

@@ -1,5 +1,7 @@
 package com.formes.model;
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @DiscriminatorValue("cercle")
@@ -24,17 +26,17 @@ public class Cercle extends Forme {
     }
 
     @Override
-    public double getAire() {
+    public double calculerAire() {
         return Math.PI * rayon * rayon;
     }
     
     @Override
-    public double getPerimetre() {
+    public double calculerPerimetre() {
         return 2 * Math.PI * rayon;
     }
 
     @Override
     public String toString() {
-        return getType()+ " "+ getCouleur()+" : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ getAire() + "cm2 et mon périmètre est de "+ getPerimetre()+" cm.";
+        return getType()+ " "+ getCouleur()+" : j'ai un rayon de " + getRayon()+ " cm, mon aire est de "+ calculerAire() + "cm2 et mon périmètre est de "+ calculerPerimetre()+" cm.";
     }
 }
