@@ -1,0 +1,61 @@
+.container{
+    height: 50vh; 
+    background-image: url('/assets/images/bgConsigne.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+p{
+    color: black;
+    font-size: 20px;
+    padding: 5px;
+    margin-left: 20%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    }
+
+
+li{
+    color: black;
+    font-size: 20px;
+    padding: 5px;
+    margin-left: 25%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+button{
+    display: flex;              
+    justify-content: center;    
+    align-items: center;     
+    margin-left: 45%;          
+}
+h2{
+    text-align: center;
+    margin-top: 8%;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+}
+.close-button {
+    all: unset;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    font-size: 3px;
+    background-color: #f9f9f9;
+    border-radius: 100%;
+    padding: auto;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px;
+}
+.mat-icon{
+    height: auto;
+    width: auto;
+}

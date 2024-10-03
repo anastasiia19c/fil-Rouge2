@@ -35,7 +35,7 @@
     display: inline-block;
     margin: 15px;
     padding: 15px 30px;
-    background-color: rgba(182, 219, 221, 0.836);
+    background: linear-gradient( rgb(235, 158, 205), rgba(159, 215, 247, 0.9));
     color: rgb(0, 0, 0);
     text-decoration: none;
     border-radius: 5px;
@@ -46,7 +46,7 @@
     }
     
     .category-button:hover {
-    background-color: rgba(115, 219, 223, 0.9);
+    background-color: rgba(159, 215, 247, 0.9);
     }
     .settings{ 
     display: flex;
@@ -54,6 +54,17 @@
     align-items: center; 
     height: 100px;
     width: 100px;
-    color: rgb(0, 0, 0); 
+    color: rgba(47, 92, 198, 0.81);
     font-size: 40px;
+    
+}
+.setting {
+    background: none;    
+    border: none;      
+    padding: 0;     
+    margin: 0;         
+    cursor: pointer;  
+    display: flex;     
+    align-items: center; 
+    justify-content: center; 
 }
