@@ -1,0 +1,9 @@
+<div class="container">
+    <button [routerLink]="['/acceuil']">
+        <mat-icon class="home">home</mat-icon>
+    </button>
+  <div class="boite" *ngFor="let boite of boites" 
+        [ngStyle]="{'background-image': 'url(' + boite.image + ')'}" 
+        (click)="onBoiteClick(boite)">
+    </div> 
+</div>
