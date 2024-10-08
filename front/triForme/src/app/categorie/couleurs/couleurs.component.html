@@ -1,9 +1,10 @@
 <div class="container">
-    <button [routerLink]="['/acceuil']">
-        <mat-icon class="home">home</mat-icon>
-    </button>
-  <div class="boite" *ngFor="let boite of boites" 
-        [ngStyle]="{'background-image': 'url(' + boite.image + ')'}" 
-        (click)="onBoiteClick(boite)">
+    <canvas #canvas width="1000" height="1000"></canvas>
+    <mat-icon [routerLink]="['/acceuil']" class="home">home</mat-icon>
+    <div class="boites">
+        <div class="boite" *ngFor="let boite of boites" 
+            [ngStyle]="{'background-image': 'url(' + boite.image + ')'}" 
+            (click)="onBoiteClick(boite)">
+        </div>
     </div>
 </div>

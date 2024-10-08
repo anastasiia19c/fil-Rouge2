@@ -12,7 +12,7 @@ export class AcceuilComponent {
   openPopup(): void {
     this.dialog.open(ConsignesComponent, {
       width: '50%',
-      height: '555px',
+      height: '557px',
     });
   }
 
