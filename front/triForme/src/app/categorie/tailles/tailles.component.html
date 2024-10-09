@@ -1,5 +1,6 @@
 <div class="container">
-    <canvas #canvas width="1000" height="1000"></canvas>
+    <canvas #canvas width="1500" height="1000" 
+            (mousedown)="onMouseDown($event)"></canvas>
     <mat-icon [routerLink]="['/acceuil']" class="home">home</mat-icon>
     <div class="boites">
         <div class="boite" *ngFor="let boite of boites" 

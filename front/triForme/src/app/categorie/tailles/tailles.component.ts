@@ -9,37 +9,241 @@ export class TaillesComponent implements OnInit {
   @ViewChild('canvas', { static: true }) 
   canvas!: ElementRef<HTMLCanvasElement>;
   private ctx!: CanvasRenderingContext2D;
+
+    // Pour stocker les formes dessinées
+    formes: any[] = [];
+
+    // Pour stocker les formes triées par taille dans les boîtes
+  formesTriees: { [key: string]: any[] } = {
+    'grande': [],   
+    'moyenne': [],   
+    'petite': []
+  }
+  
+    currentDraggingIndex: number | null = null;
+    private offsetX!: number;
+    private offsetY!: number;
+  
   constructor(private formeService: FormeService) {}
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d')!;
     this.formeService.getFormes3().subscribe((data) => {
-      this.drawShapes(data.formes);
+      this.formes = data.formes;
+      this.drawShapes(this.formes);
     });
   }
 
   boites = [
-    { image: 'assets/images/boiteGrande.png', name: 'Boîte Grande' },
-    { image: 'assets/images/boiteMoyenne.png', name: 'Boîte Moyenne' },
-    { image: 'assets/images/boitePetite.png', name: 'Boîte Petite' },
+    { image: 'assets/images/boiteGrande.png', name: 'Boîte Grande', size: 'grande' },
+    { image: 'assets/images/boiteMoyenne.png', name: 'Boîte Moyenne', size: 'moyenne'},
+    { image: 'assets/images/boitePetite.png', name: 'Boîte Petite', size: 'petite' },
   ];
 
-  onBoiteClick(boite: any) {
-    console.log('Vous avez cliqué sur :', boite.name);
+  onMouseDown(event: MouseEvent) {
+    const mousePos = this.getMousePos(event);
+    let formeTrouvee = false; // Pour suivre si une forme a été trouvée sous le curseur
+  
+    this.formes.forEach((forme, index) => {
+      if (this.isMouseInShape(mousePos, forme)) {
+        this.currentDraggingIndex = index; // On sélectionne la forme
+        console.log('Forme sélectionnée:', forme);
+        formeTrouvee = true; // Une forme a été trouvée
+      }
+    });
+  
+    // Si aucune forme n'a été trouvée sous le curseur, désélectionner toute forme
+    if (!formeTrouvee) {
+      this.currentDraggingIndex = null;
+      console.log('Aucune forme sélectionnée.');
+    }
+  
+    this.clearCanvas();
+    this.drawShapes(this.formes); // Redessiner toutes les formes après la sélection
   }
 
+
+  getMousePos(event: MouseEvent): { x: number; y: number } {
+    const rect = this.canvas.nativeElement.getBoundingClientRect();
+    return {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    };
+  }
+  isMouseInShape(mousePos: { x: number; y: number }, forme: any): boolean {
+    switch (forme.type) {
+      case 'Carre':
+        return mousePos.x >= forme.x && mousePos.x <= forme.x + forme.cote &&
+               mousePos.y >= forme.y && mousePos.y <= forme.y + forme.cote;
+      case 'Cercle':
+        const dx = mousePos.x - forme.x;
+        const dy = mousePos.y - forme.y;
+        return (dx * dx + dy * dy) <= (forme.rayon * forme.rayon);
+      case 'Triangle':
+        return this.isPointInTriangle(mousePos, forme);
+      case 'Rectangle':
+        return mousePos.x >= forme.x && mousePos.x <= forme.x + forme.longueur &&
+               mousePos.y >= forme.y && mousePos.y <= forme.y + forme.largeur;
+      case 'Hexagone':
+      case 'Pentagone':
+        const sides = forme.type === 'Hexagone' ? 6 : 5;
+        return this.isPointInPolygon(mousePos, forme, sides);
+      default:
+        return false;
+    }
+  }
+  isPointInPolygon(point: { x: number, y: number }, polygon: any, sides: number): boolean {
+    const radius = polygon.cote / (2 * Math.sin(Math.PI / sides));
+    const angle = (Math.PI * 2) / sides;
+
+    const dx = point.x - polygon.x;
+    const dy = point.y - polygon.y;
+    if (dx * dx + dy * dy > radius * radius) {
+      return false; 
+    }
+
+    let inside = false;
+    for (let i = 0; i < sides; i++) {
+      const x1 = polygon.x + radius * Math.cos(i * angle);
+      const y1 = polygon.y + radius * Math.sin(i * angle);
+      const x2 = polygon.x + radius * Math.cos((i + 1) * angle);
+      const y2 = polygon.y + radius * Math.sin((i + 1) * angle);
+
+      if ((y1 > point.y) !== (y2 > point.y) &&
+          (point.x < (x2 - x1) * (point.y - y1) / (y2 - y1) + x1)) {
+          inside = !inside;
+      }
+    }
+    return inside;
+  }
+  isPointInTriangle(pt: { x: number, y: number }, triangle: any): boolean {
+    const b1 = this.sign(pt, { x: triangle.x, y: triangle.y }, 
+                          { x: triangle.x + triangle.base, y: triangle.y }) < 0.0;
+    const b2 = this.sign(pt, { x: triangle.x + triangle.base, y: triangle.y }, 
+                          { x: triangle.x + triangle.base / 2, y: triangle.y - triangle.hauteur }) < 0.0;
+    const b3 = this.sign(pt, { x: triangle.x + triangle.base / 2, y: triangle.y - triangle.hauteur }, 
+                          { x: triangle.x, y: triangle.y }) < 0.0;
+
+    return (b1 === b2) && (b2 === b3);
+  }
+
+  sign(p1: { x: number, y: number }, p2: { x: number, y: number }, p3: { x: number, y: number }): number {
+    return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+  }
+
+  onBoiteClick(boite: any) {
+    if (this.currentDraggingIndex !== null) {
+      const forme = this.formes[this.currentDraggingIndex];
+      const tailleForme = forme.taille; // La taille de la forme
+    
+      let correspondanceBoite = false;
+    
+      // Vérifie à quelle boîte la forme correspond en fonction de sa taille
+      if (boite.size === 'petite' && tailleForme <= 2600) {
+        correspondanceBoite = true;
+      } else if (boite.size === 'moyenne' && tailleForme >= 10000 && tailleForme <= 15000) {
+        correspondanceBoite = true;
+      } else if (boite.size === 'grande' && tailleForme > 15000) {
+        correspondanceBoite = true;
+      }
+    
+      if (correspondanceBoite) {
+        console.log(`Forme de taille ${tailleForme} déposée dans la boîte: ${boite.name}`);
+    
+        // Ajoute la forme dans la boîte correcte
+        this.formesTriees[boite.size].push(forme); // Utiliser boite.size pour correspondre à formesTriees
+        this.formes.splice(this.currentDraggingIndex!, 1); // Supprime la forme de la liste
+        
+        // Réinitialise la sélection
+        this.currentDraggingIndex = null;
+  
+        // Rafraîchir correctement le canvas
+        this.refreshCanvas();
+      } else {
+        console.log(`La forme sélectionnée ne correspond pas à la boîte: ${boite.name}`);
+      }
+    } else {
+      console.log('Aucune forme sélectionnée pour être déposée.');
+    }
+  }
+  refreshCanvas(): void {
+    // Effacer le canvas
+    this.clearCanvas();
+  
+    // Redessiner uniquement les formes qui ne sont pas encore triées
+    this.drawShapes(this.formes);
+
+  }
+  
+  
+  
+
+  drawSortedShapes() {
+    this.clearCanvas();
+    Object.keys(this.formesTriees).forEach(couleur => {
+      this.formesTriees[couleur].forEach(forme => {
+        this.drawShapes([forme]);
+      });
+    });
+    this.drawShapes(this.formes);
+  }
+  
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+  }
+
+  drawSelectionBorder(forme: any): void {
+    this.ctx.strokeStyle = 'black'; // Couleur de la bordure de sélection
+    this.ctx.lineWidth = 3; // Épaisseur de la bordure
+  
+    switch (forme.type) {
+      case 'Carre':
+        this.ctx.strokeRect(forme.x - 5, forme.y - 5, forme.cote + 10, forme.cote + 10);
+        break;
+      case 'Cercle':
+        this.ctx.beginPath();
+        this.ctx.arc(forme.x, forme.y, forme.rayon + 5, 0, 2 * Math.PI);
+        this.ctx.stroke();
+        break;
+      case 'Triangle':
+        this.ctx.beginPath();
+        this.ctx.moveTo(forme.x, forme.y);
+        this.ctx.lineTo(forme.x + forme.base, forme.y);
+        this.ctx.lineTo(forme.x + forme.base / 2, forme.y - forme.hauteur);
+        this.ctx.closePath();
+        this.ctx.stroke();
+        break;
+      case 'Rectangle':
+        this.ctx.strokeRect(forme.x - 5, forme.y - 5, forme.longueur + 10, forme.largeur + 10);
+        break;
+      case 'Hexagone':
+      case 'Pentagone':
+        const sides = forme.type === 'Hexagone' ? 6 : 5;
+        this.drawPolygonBorder(forme, sides);
+        break;
+    }
+  }
+  
+  drawPolygonBorder(polygon: any, sides: number): void {
+    const radius = polygon.cote / (2 * Math.sin(Math.PI / sides)) + 5; // Rayon augmenté pour le contour
+    const angle = (Math.PI * 2) / sides;
+  
+    this.ctx.beginPath();
+    for (let i = 0; i < sides; i++) {
+      const x = polygon.x + radius * Math.cos(i * angle);
+      const y = polygon.y + radius * Math.sin(i * angle);
+      if (i === 0) {
+        this.ctx.moveTo(x, y);
+      } else {
+        this.ctx.lineTo(x, y);
+      }
+    }
+    this.ctx.closePath();
+    this.ctx.stroke();
+  }
+  
   drawShapes(formes: any[]): void {
-    let offsetX = 0;
-    let offsetY = 0;
     formes.forEach((forme, index) => {
-      // Décaler les formes pour qu'elles ne se superposent pas
-      offsetX = (index % 5) * 200; 
-      offsetY = Math.floor(index / 5) * 300; 
-
-      forme.x += offsetX;
-      forme.y += offsetY;
-      console.log('Forme:', forme);  
-
       switch (forme.type) {
         case 'Carre':
           this.drawCarre(forme);
@@ -62,8 +266,12 @@ export class TaillesComponent implements OnInit {
         default:
           break;
       }
-    });
-  }
+    // Si la forme est actuellement sélectionnée, dessiner un contour autour d'elle
+    if (this.currentDraggingIndex === index) {
+      this.drawSelectionBorder(forme);
+    }
+  });
+}  
 
 
   drawCarre(carre: any): void {
