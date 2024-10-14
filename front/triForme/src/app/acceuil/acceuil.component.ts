@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConsignesComponent } from '../pop-up/consignes/consignes.component';
+import { AdminComponent } from '../pop-up/admin/admin.component';
 
 @Component({
   selector: 'app-acceuil',
@@ -13,6 +14,12 @@ export class AcceuilComponent {
     this.dialog.open(ConsignesComponent, {
       width: '50%',
       height: '557px',
+    });
+  }
+  openPopupAdmin(): void {
+    this.dialog.open(AdminComponent, {
+      width: '80%',
+      height: '80%',
     });
   }
 

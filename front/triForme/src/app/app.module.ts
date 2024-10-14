@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule ,Routes} from '@angular/router';  // Import RouterModule here
-import { MatIconModule } from '@angular/material/icon'; // Importer MatIconModule
+import { RouterModule ,Routes} from '@angular/router';  
+import { MatIconModule } from '@angular/material/icon'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
@@ -10,7 +10,16 @@ import { ConsignesComponent } from './pop-up/consignes/consignes.component';
 import { FormesComponent } from './categorie/formes/formes.component';
 import { TaillesComponent } from './categorie/tailles/tailles.component';
 import { CouleursComponent } from './categorie/couleurs/couleurs.component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './pop-up/admin/admin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 
 
 const routes: Routes = [
@@ -18,6 +27,8 @@ const routes: Routes = [
   { path: 'triParCouleurs', component: CouleursComponent },
   { path: 'triParTailles', component: TaillesComponent },
   { path: 'triParFormes', component: FormesComponent },
+  { path: 'parametres', component: AdminComponent },
+
 ];
 
 @NgModule({
@@ -27,15 +38,23 @@ const routes: Routes = [
     ConsignesComponent,
     FormesComponent,
     TaillesComponent,
-    CouleursComponent
+    CouleursComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatIconModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -52,17 +52,15 @@
     display: flex;
     justify-content: center; 
     align-items: center; 
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 60px;
     color: rgba(47, 92, 198, 0.81);
     font-size: 40px;
     
 }
 .setting {
     background: none;    
-    border: none;      
-    padding: 0;     
-    margin: 0;         
+    border: none;              
     cursor: pointer;  
     display: flex;     
     align-items: center; 

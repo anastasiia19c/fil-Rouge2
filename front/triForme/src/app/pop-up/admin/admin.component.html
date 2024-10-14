@@ -1,0 +1,80 @@
+<div class="container">
+    <h2>Ajouter une forme géométrique</h2>
+
+    <form (ngSubmit)="onSubmit()" #formeForm="ngForm" class="forme-form">
+        <!-- Sélection du type de forme -->
+        <mat-form-field>
+            <mat-label>Type de Forme</mat-label>
+            <mat-select [(ngModel)]="nouvelleForme.type" name="type" required>
+                <mat-option value="Carre">Carré</mat-option>
+                <mat-option value="Cercle">Cercle</mat-option>
+                <mat-option value="Triangle">Triangle</mat-option>
+                <mat-option value="Rectangle">Rectangle</mat-option>
+                <mat-option value="Hexagone">Hexagone</mat-option>
+                <mat-option value="Pentagone">Pentagone</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Sélection de la catégorie/composition -->
+        <mat-form-field>
+            <mat-label>Catégorie</mat-label>
+            <mat-select [(ngModel)]="nouvelleForme.categorie" name="categorie" required>
+                <mat-option value="3">Tri par Taille</mat-option>
+                <mat-option value="2">Tri par Couleur</mat-option>
+                <mat-option value="1">Tri par Forme</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Champs communs pour toutes les formes -->
+        <mat-form-field>
+            <mat-label>Couleur</mat-label>
+            <mat-select [(ngModel)]="nouvelleForme.couleur" name="couleur" required>
+                <mat-option value="red">Rouge</mat-option>
+                <mat-option value="yellow">Jaune</mat-option>
+                <mat-option value="blue">Bleu</mat-option>
+                <mat-option value="green">Vert</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Position X" [(ngModel)]="nouvelleForme.x" name="x" required>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Position Y" [(ngModel)]="nouvelleForme.y" name="y" required>
+        </mat-form-field>
+
+        <!-- Champs spécifiques en fonction du type de forme -->
+        <div *ngIf="nouvelleForme.type === 'Carre' || nouvelleForme.type === 'Hexagone' || nouvelleForme.type === 'Pentagone'">
+            <mat-form-field>
+                <input matInput placeholder="Côté" [(ngModel)]="nouvelleForme.cote" name="cote" required>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="nouvelleForme.type === 'Cercle'">
+            <mat-form-field>
+                <input matInput placeholder="Rayon" [(ngModel)]="nouvelleForme.rayon" name="rayon" required>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="nouvelleForme.type === 'Triangle'">
+            <mat-form-field>
+                <input matInput placeholder="Base" [(ngModel)]="nouvelleForme.base" name="base" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Hauteur" [(ngModel)]="nouvelleForme.hauteur" name="hauteur" required>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="nouvelleForme.type === 'Rectangle'">
+            <mat-form-field>
+                <input matInput placeholder="Longueur" [(ngModel)]="nouvelleForme.longueur" name="longueur" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Largeur" [(ngModel)]="nouvelleForme.largeur" name="largeur" required>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="!formeForm.form.valid">Ajouter la Forme</button>
+    </form>
+    <button mat-button (click)="close()" class="close-button">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
