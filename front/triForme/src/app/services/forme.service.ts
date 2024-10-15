@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FormeService {
-  private apiParCouleur = 'http://localhost:9090/api/triForme/2';
-  private apiParForme = 'http://localhost:9090/api/triForme/1';
-  private apiParTaille = 'http://localhost:9090/api/triForme/3';
-  private apiAjoutForme = 'http://localhost:9090/api/triForme'; 
+  private apiParCouleur = 'http://10.8.26.1:9090/api/triForme/2';
+  private apiParForme = 'http://10.8.26.1:9090/api/triForme/1';
+  private apiParTaille = 'http://10.8.26.1:9090/api/triForme/3';
+  private apiAjoutForme = 'http://10.8.26.1:9090/api/triForme'; 
 
 
   constructor(private http: HttpClient) {}
