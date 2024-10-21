@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { JeuPerduComponent } from './pop-up/jeu-perdu/jeu-perdu.component';
+import { JeuGagneComponent } from './pop-up/jeu-gagne/jeu-gagne.component';
 
 
 
@@ -39,7 +41,9 @@ const routes: Routes = [
     FormesComponent,
     TaillesComponent,
     CouleursComponent,
-    AdminComponent
+    AdminComponent,
+    JeuPerduComponent,
+    JeuGagneComponent
   ],
   imports: [
     BrowserModule,

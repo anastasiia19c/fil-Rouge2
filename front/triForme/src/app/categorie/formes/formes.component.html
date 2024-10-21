@@ -8,4 +8,12 @@
             (click)="onBoiteClick(boite)">
         </div>
     </div>
+    <div class="tableau" [ngStyle]="{'background-image': 'url(' + tableau.image + ')'}">
+        <!-- Section pour afficher les images de score -->
+        <div class="status-image">
+            <div class="score-images">
+                <img *ngFor="let scoreImage of scoreImages" [src]="scoreImage" class="score-image" alt="Score Image">
+            </div>
+        </div>
+    </div>       
 </div>

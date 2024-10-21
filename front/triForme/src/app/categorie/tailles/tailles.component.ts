@@ -1,5 +1,10 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormeService } from '../../services/forme.service';
+import { Router } from '@angular/router'; 
+import { JeuPerduComponent } from 'src/app/pop-up/jeu-perdu/jeu-perdu.component';
+import { MatDialog } from '@angular/material/dialog';
+import { JeuGagneComponent } from 'src/app/pop-up/jeu-gagne/jeu-gagne.component';
+
 @Component({
   selector: 'app-tailles',
   templateUrl: './tailles.component.html',
@@ -21,10 +26,13 @@ export class TaillesComponent implements OnInit {
   }
   
     currentDraggingIndex: number | null = null;
-    private offsetX!: number;
-    private offsetY!: number;
+    showCorrect: boolean = false; 
+    showIncorrect: boolean = false; 
+    scoreImages: string[] = []; 
+    incorrectAttempts: number = 0; // Compteur de tentatives incorrectes
+    maxAttempts: number = 3;
   
-  constructor(private formeService: FormeService) {}
+  constructor(private formeService: FormeService,  private router: Router,public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d')!;
@@ -39,6 +47,15 @@ export class TaillesComponent implements OnInit {
     { image: 'assets/images/boiteMoyenne.png', name: 'Boîte Moyenne', size: 'moyenne'},
     { image: 'assets/images/boitePetite.png', name: 'Boîte Petite', size: 'petite' },
   ];
+  tableau = {
+    image: 'assets/images/tableau.png', name: "Board" 
+  };
+  correct = {
+    image: 'assets/images/correct.png', name: "correct"
+  };
+  incorrect = {
+    image: 'assets/images/incorrect.png', name: "incorrect"
+  };
 
   onMouseDown(event: MouseEvent) {
     const mousePos = this.getMousePos(event);
@@ -153,19 +170,63 @@ export class TaillesComponent implements OnInit {
         // Ajoute la forme dans la boîte correcte
         this.formesTriees[boite.size].push(forme); // Utiliser boite.size pour correspondre à formesTriees
         this.formes.splice(this.currentDraggingIndex!, 1); // Supprime la forme de la liste
+
+        this.scoreImages.push(this.correct.image); // Ajout de l'image "correct"
+        this.showCorrect = true;
+        this.showIncorrect = false;
+        // Vérifie si toutes les formes ont été classées
+        if (this.formes.length === 0) {
+          this.openWinDialog();  // Ouvre la boîte de dialogue pour la victoire
+        } else {
         
-        // Réinitialise la sélection
-        this.currentDraggingIndex = null;
-  
-        // Rafraîchir correctement le canvas
-        this.refreshCanvas();
+          // Réinitialiser la sélection avant de redessiner
+          this.currentDraggingIndex = null;
+          
+          // Rafraîchir correctement le canvas
+          this.refreshCanvas();
+        }
       } else {
-        console.log(`La forme sélectionnée ne correspond pas à la boîte: ${boite.name}`);
+        console.log(`La forme sélectionnée de couleur ${forme.couleur} ne correspond pas à la boîte: ${boite.name}`);
+        
+        // Incrémente le compteur de tentatives incorrectes
+        this.incorrectAttempts++;
+        
+        // Vérifie si le nombre de tentatives incorrectes a atteint la limite
+        if (this.incorrectAttempts >= this.maxAttempts) {
+          this.endGame(); // Terminer le jeu
+        } else {
+          // Ajout de l'image de score incorrecte
+          this.scoreImages.push(this.incorrect.image); // Ajout de l'image "incorrect"
+          this.showCorrect = false;
+          this.showIncorrect = true;
+        }
       }
     } else {
       console.log('Aucune forme sélectionnée pour être déposée.');
     }
   }
+
+  openWinDialog(): void {
+    const dialogRef = this.dialog.open(JeuGagneComponent); // Ouvre le dialogue de victoire
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/acceuil']); // Redirige vers l'accueil après fermeture
+    });
+  }
+  endGame() {
+    const dialogRef = this.dialog.open(JeuPerduComponent, {
+      width: '300px',
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+      this.redirectToHome();
+    });
+  }
+  
+
+  redirectToHome() {
+    this.router.navigate(['/acceuil']); 
+  }
+
   refreshCanvas(): void {
     // Effacer le canvas
     this.clearCanvas();

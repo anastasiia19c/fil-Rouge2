@@ -1,5 +1,9 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormeService } from '../../services/forme.service';
+import { Router } from '@angular/router'; 
+import { JeuPerduComponent } from 'src/app/pop-up/jeu-perdu/jeu-perdu.component';
+import { MatDialog } from '@angular/material/dialog';
+import { JeuGagneComponent } from 'src/app/pop-up/jeu-gagne/jeu-gagne.component';
 
 @Component({
   selector: 'app-formes',
@@ -24,10 +28,13 @@ export class FormesComponent implements OnInit {
 
   
     currentDraggingIndex: number | null = null;
-    private offsetX!: number;
-    private offsetY!: number;
-  
-  constructor(private formeService: FormeService) {}
+    showCorrect: boolean = false; 
+    showIncorrect: boolean = false; 
+    scoreImages: string[] = []; 
+    incorrectAttempts: number = 0; // Compteur de tentatives incorrectes
+    maxAttempts: number = 3;
+
+  constructor(private formeService: FormeService,  private router: Router,public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d')!;
@@ -43,6 +50,16 @@ export class FormesComponent implements OnInit {
     { image: 'assets/images/boiteTriangle.png', name: 'Boîte Triangle', forme: 'triangle' },
     { image: 'assets/images/boiteGone.png', name: 'Boîte Gone', forme: 'gone' },
   ];
+
+  tableau = {
+    image: 'assets/images/tableau.png', name: "Board" 
+  };
+  correct = {
+    image: 'assets/images/correct.png', name: "correct"
+  };
+  incorrect = {
+    image: 'assets/images/incorrect.png', name: "incorrect"
+  };
 
   onMouseDown(event: MouseEvent) {
     const mousePos = this.getMousePos(event);
@@ -137,35 +154,77 @@ export class FormesComponent implements OnInit {
 
   onBoiteClick(boite: any) {
     if (this.currentDraggingIndex !== null) {
-      const forme = this.formes[this.currentDraggingIndex];
-  
-      // Logique pour vérifier si la forme correspond à la boîte
-      if (
-        (boite.forme === '4cotes' && (forme.type === 'Carre' || forme.type === 'Rectangle')) ||
-        (boite.forme === 'cercle' && forme.type === 'Cercle') ||
-        (boite.forme === 'triangle' && forme.type === 'Triangle') ||
-        (boite.forme === 'gone' && (forme.type === 'Pentagone' || forme.type === 'Hexagone'))
-      ) {
-        console.log(`Forme déposée dans la boîte: ${boite.name}`);
-  
-        // Ajouter la forme dans la boîte correspondante
-        this.formesTriees[boite.forme].push(forme);
-  
-        // Supprimer la forme du tableau des formes
-        this.formes.splice(this.currentDraggingIndex!, 1);
-  
-        // Réinitialiser la sélection avant de redessiner
-        this.currentDraggingIndex = null;
-  
-        // Rafraîchir correctement le canvas
-        this.refreshCanvas();
-      } else {
-        console.log(`La forme sélectionnée ne correspond pas à la boîte: ${boite.name}`);
-      }
+        const forme = this.formes[this.currentDraggingIndex];
+
+        // Logique pour vérifier si la forme correspond à la boîte
+        if (
+            (boite.forme === '4cotes' && (forme.type === 'Carre' || forme.type === 'Rectangle')) ||
+            (boite.forme === 'cercle' && forme.type === 'Cercle') ||
+            (boite.forme === 'triangle' && forme.type === 'Triangle') ||
+            (boite.forme === 'gone' && (forme.type === 'Pentagone' || forme.type === 'Hexagone'))
+        ) {
+            console.log(`Forme déposée dans la boîte: ${boite.name}`);
+
+            // Ajouter la forme dans la boîte correspondante
+            this.formesTriees[boite.forme].push(forme);
+
+            // Supprimer la forme du tableau des formes
+            this.formes.splice(this.currentDraggingIndex!, 1);
+
+            // Ajout de l'image de score correcte
+            this.scoreImages.push(this.correct.image); // Ajout de l'image "correct"
+            this.showCorrect = true;
+            this.showIncorrect = false;
+        // Vérifie si toutes les formes ont été classées
+        if (this.formes.length === 0) {
+          this.openWinDialog();  // Ouvre la boîte de dialogue pour la victoire
+        }else {
+        
+          // Réinitialiser la sélection avant de redessiner
+          this.currentDraggingIndex = null;
+          
+          // Rafraîchir correctement le canvas
+          this.refreshCanvas();
+        }
+        } else {
+          console.log(`La forme sélectionnée de couleur ${forme.couleur} ne correspond pas à la boîte: ${boite.name}`);
+          
+          // Incrémente le compteur de tentatives incorrectes
+          this.incorrectAttempts++;
+          
+          // Vérifie si le nombre de tentatives incorrectes a atteint la limite
+          if (this.incorrectAttempts >= this.maxAttempts) {
+            this.endGame(); // Terminer le jeu
+          } else {
+            // Ajout de l'image de score incorrecte
+            this.scoreImages.push(this.incorrect.image); // Ajout de l'image "incorrect"
+            this.showCorrect = false;
+            this.showIncorrect = true;
+          }
+        }
     } else {
-      console.log('Aucune forme sélectionnée pour être déposée.');
+        console.log('Aucune forme sélectionnée pour être déposée.');
     }
-  }
+}
+
+openWinDialog(): void {
+  const dialogRef = this.dialog.open(JeuGagneComponent); // Ouvre le dialogue de victoire
+  dialogRef.afterClosed().subscribe(() => {
+    this.router.navigate(['/acceuil']); // Redirige vers l'accueil après fermeture
+  });
+}
+endGame() {
+  const dialogRef = this.dialog.open(JeuPerduComponent, {
+    width: '300px',
+  });
+
+  dialogRef.afterClosed().subscribe(() => {
+    this.redirectToHome();
+  });
+}
+redirectToHome() {
+  this.router.navigate(['/acceuil']); 
+}
   
   refreshCanvas(): void {
     this.clearCanvas();
