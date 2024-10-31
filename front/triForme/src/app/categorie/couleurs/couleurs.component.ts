@@ -213,7 +213,7 @@ export class CouleursComponent implements OnInit {
   openWinDialog(): void {
     const dialogRef = this.dialog.open(JeuGagneComponent); // Ouvre le dialogue de victoire
     dialogRef.afterClosed().subscribe(() => {
-      this.router.navigate(['/acceuil']); // Redirige vers l'accueil après fermeture
+      this.router.navigate(['/accueil']); // Redirige vers l'accueil après fermeture
     });
   }
   endGame() {
@@ -228,7 +228,7 @@ export class CouleursComponent implements OnInit {
   
 
   redirectToHome() {
-    this.router.navigate(['/acceuil']); 
+    this.router.navigate(['/accueil']); 
   }
 
   refreshCanvas(): void {

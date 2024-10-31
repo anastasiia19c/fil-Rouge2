@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class FormeService {
   //changer l'adresse pour le déploiement 10.8.26.1
-  private apiParCouleur = 'http://localhost:9090/api/triForme/2';
-  private apiParForme = 'http://localhost:9090/api/triForme/1';
-  private apiParTaille = 'http://localhost:9090/api/triForme/3';
+  private apiParCouleur = 'http://10.8.26.1:9090/api/triForme/2';
+  private apiParForme = 'http://10.8.26.1:9090/api/triForme/1';
+  private apiParTaille = 'http://10.8.26.1:9090/api/triForme/3';
   private apiAjoutForme = 'http://10.8.26.1:9090/api/triForme'; 
 
 

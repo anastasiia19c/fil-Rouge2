@@ -4,7 +4,7 @@ import { RouterModule ,Routes} from '@angular/router';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppComponent } from './app.component';
-import { AcceuilComponent } from './acceuil/acceuil.component';
+import { accueilComponent } from './acceuil/acceuil.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConsignesComponent } from './pop-up/consignes/consignes.component';
 import { FormesComponent } from './categorie/formes/formes.component';
@@ -25,7 +25,7 @@ import { JeuGagneComponent } from './pop-up/jeu-gagne/jeu-gagne.component';
 
 
 const routes: Routes = [
-  { path: 'acceuil', component: AcceuilComponent },
+  { path: 'accueil', component: accueilComponent },
   { path: 'triParCouleurs', component: CouleursComponent },
   { path: 'triParTailles', component: TaillesComponent },
   { path: 'triParFormes', component: FormesComponent },
@@ -36,7 +36,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AcceuilComponent,
+    accueilComponent,
     ConsignesComponent,
     FormesComponent,
     TaillesComponent,

@@ -4,11 +4,11 @@ import { ConsignesComponent } from '../pop-up/consignes/consignes.component';
 import { AdminComponent } from '../pop-up/admin/admin.component';
 
 @Component({
-  selector: 'app-acceuil',
+  selector: 'app-accueil',
   templateUrl: './acceuil.component.html',
   styleUrls: ['./acceuil.component.css']
 })
-export class AcceuilComponent {
+export class accueilComponent {
   constructor(private dialog: MatDialog) {}
   openPopup(): void {
     this.dialog.open(ConsignesComponent, {
