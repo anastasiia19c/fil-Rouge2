@@ -138,4 +138,31 @@ mvn spring-boot:run
 Cela va démarrer l'application sur le serveur intégré (par défaut sur le port `9090`).
 
 ---
+## Étape 2 : Installer Angular CLI
+
+Le **CLI Angular** (Command Line Interface) est l'outil officiel de ligne de commande d'Angular, permettant de créer, gérer et déployer des applications Angular.
+
+### Installer Angular CLI globalement
+
+Pour installer Angular CLI globalement sur votre machine, exécutez la commande suivante :
+
+```bash
+sudo npm install -g @angular/cli
+```
+
+Cela installera Angular CLI, ce qui vous permettra d'utiliser la commande `ng` pour créer des projets et gérer votre application Angular.
+
+### Vérifier l'installation d'Angular CLI
+
+Une fois l'installation terminée, vous pouvez vérifier que l'Angular CLI a bien été installé avec :
+
+```bash
+ng version
+```
+## Étape 3: Lancez le projet
+cd front/triForme
+```bash
+ng serve
+```
+---
 
