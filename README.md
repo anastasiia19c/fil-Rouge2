@@ -122,10 +122,8 @@ SHOW DATABASES;
 Si la base de données que vous souhaitez utiliser n'existe pas, vous pouvez la créer avec la commande suivante :
 
 ```sql
-CREATE DATABASE nom_de_votre_bdd;
+CREATE DATABASE filRouge2;
 ```
-
-Remplacez `nom_de_votre_bdd` par le nom de la base de données que vous souhaitez créer.
 
 ---
 
